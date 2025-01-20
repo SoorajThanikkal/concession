@@ -3,4 +3,4 @@ services:
     name: concession
     env: python
     buildCommand: ./build.sh
-    startCommand: daphne concession.asgi:application -b 0.0.0.0 -p $PORT
+    startCommand: daphne -b 0.0.0.0 -p $PORT concession.asgi:application
