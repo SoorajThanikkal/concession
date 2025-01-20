@@ -10,9 +10,11 @@ constantly==23.10.4
 cryptography==44.0.0
 daphne==4.1.2
 Django==5.1.4
+gunicorn==23.0.0
 hyperlink==21.0.0
 idna==3.10
 incremental==24.7.2
+packaging==24.2
 pillow==11.0.0
 pyasn1==0.6.1
 pyasn1_modules==0.4.1
@@ -29,4 +31,5 @@ txaio==23.1.1
 typing_extensions==4.12.2
 tzdata==2024.2
 urllib3==2.2.3
+whitenoise==6.8.2
 zope.interface==7.2
