@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Edit Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script>
+        function validateForm(event) {
+            const from = document.getElementById("from").value;
+            const to = document.getElementById("to").value;
+            if (from === to) {
+                alert("The 'From' and 'To' addresses cannot be the same.");
+                event.preventDefault(); // Prevent form submission
+            }
+        }
+    </script>
+</head>
+<body class="bg-blue-50 min-h-screen flex items-center justify-center">
+    <div class="bg-white shadow-lg rounded-lg p-6 w-full max-w-md">
+        <form method="POST" enctype="multipart/form-data" onsubmit="validateForm(event)">
+            {% csrf_token %}
+            <div class="text-center">
+                <a href="#" class="text-blue-600 text-lg mb-4 inline-block"><i class="fas fa-arrow-left"></i></a>
+                <div class="w-20 h-20 mx-auto rounded-full bg-gray-200 overflow-hidden">
+                    {% if edit.image %}
+                    <img src="{{ edit.image.url }}" alt="Avatar" class="object-cover w-full h-full">
+                    {% else %}
+                    <i class="fas fa-user text-gray-400 text-5xl flex items-center justify-center h-full"></i>
+                    {% endif %}
+                </div>
+                <label class="block mt-4 text-blue-600 cursor-pointer">
+                    <span class="inline-block px-4 py-2 bg-blue-500 text-white rounded-lg">Change photo</span>
+                    <input type="file" name="image" id="image" class="hidden">
+                </label>
+                <h2 class="text-xl font-semibold mt-4">{{ edit.name }}</h2>
+            </div>
+
+            <div class="mt-6">
+                <label class="block text-sm font-medium text-gray-700 mb-1" for="username"><i class="fas fa-user mr-2"></i>Name</label>
+                <input type="text" id="username" name="username" value="{{ edit.name }}" class="w-full p-2 border rounded-lg" required>
+
+                <label class="block text-sm font-medium text-gray-700 mt-4 mb-1" for="email"><i class="fas fa-envelope mr-2"></i>Email</label>
+                <input type="email" id="email" name="email" value="{{ edit.email }}" class="w-full p-2 border rounded-lg" required>
+
+                <label class="block text-sm font-medium text-gray-700 mt-4 mb-1" for="dob"><i class="fas fa-birthday-cake mr-2"></i>Date of Birth</label>
+                <input type="date" id="dob" name="dob" value="{{ edit.dob|date:'Y-m-d' }}" class="w-full p-2 border rounded-lg" required>
+
+                <label class="block text-sm font-medium text-gray-700 mt-4 mb-1" for="tel"><i class="fas fa-phone mr-2"></i>Phone</label>
+                <input type="tel" id="tel" name="phonenumber" value="{{ edit.phonenumber }}" class="w-full p-2 border rounded-lg" required>
+
+                <label class="block text-sm font-medium text-gray-700 mt-4 mb-1" for="gender"><i class="fas fa-venus-mars mr-2"></i>Gender</label>
+                <input type="text" id="gender" name="gender" value="{{ edit.gender }}" class="w-full p-2 border rounded-lg" required>
+
+                <label class="block text-sm font-medium text-gray-700 mt-4 mb-1" for="from">From</label>
+                <select id="from" name="from_address" value="{{ edit.from_address }}" class="w-full p-2 border rounded-lg">
+                    <option value="Thrissur" {% if edit.from_address == "Thrissur" %}selected{% endif %}>Thrissur</option>
+                    <option value="Ollur" {% if edit.from_address == "Ollur" %}selected{% endif %}>Ollur</option>
+                    <option value="Irinjalakuda" {% if edit.from_address == "Irinjalakuda" %}selected{% endif %}>Irinjalakuda</option>
+                    <option value="Chalakudy" {% if edit.from_address == "Chalakudy" %}selected{% endif %}>Chalakudy</option>
+                    <option value="Kunnamkulam" {% if edit.from_address == "Kunnamkulam" %}selected{% endif %}>Kunnamkulam</option>
+                    <option value="Guruvayur" {% if edit.from_address == "Guruvayur" %}selected{% endif %}>Guruvayur</option>
+                    <option value="Kodungallur" {% if edit.from_address == "Kodungallur" %}selected{% endif %}>Kodungallur</option>
+                    <option value="Chavakkad" {% if edit.from_address == "Chavakkad" %}selected{% endif %}>Chavakkad</option>
+                    <option value="Wadakkanchery" {% if edit.from_address == "Wadakkanchery" %}selected{% endif %}>Wadakkanchery</option>
+                    <option value="Mala" {% if edit.from_address == "Mala" %}selected{% endif %}>Mala</option>
+                    <option value="Pavaratty" {% if edit.from_address == "Pavaratty" %}selected{% endif %}>Pavaratty</option>
+                    <option value="Kaipamangalam" {% if edit.from_address == "Kaipamangalam" %}selected{% endif %}>Kaipamangalam</option>
+                    <option value="Mannuthy" {% if edit.from_address == "Mannuthy" %}selected{% endif %}>Mannuthy</option>
+                </select>
+
+                <label class="block text-sm font-medium text-gray-700 mt-4 mb-1" for="to">To Address</label>
+                <select id="to" name="to_address" value="{{ edit.to_address }}" class="w-full p-2 border rounded-lg">
+                    <option value="Thrissur" {% if edit.to_address == "Thrissur" %}selected{% endif %}>Thrissur</option>
+                    <option value="Ollur" {% if edit.to_address == "Ollur" %}selected{% endif %}>Ollur</option>
+                    <option value="Irinjalakuda" {% if edit.to_address == "Irinjalakuda" %}selected{% endif %}>Irinjalakuda</option>
+                    <option value="Chalakudy" {% if edit.to_address == "Chalakudy" %}selected{% endif %}>Chalakudy</option>
+                    <option value="Kunnamkulam" {% if edit.to_address == "Kunnamkulam" %}selected{% endif %}>Kunnamkulam</option>
+                    <option value="Guruvayur" {% if edit.to_address == "Guruvayur" %}selected{% endif %}>Guruvayur</option>
+                    <option value="Kodungallur" {% if edit.to_address == "Kodungallur" %}selected{% endif %}>Kodungallur</option>
+                    <option value="Chavakkad" {% if edit.to_address == "Chavakkad" %}selected{% endif %}>Chavakkad</option>
+                    <option value="Wadakkanchery" {% if edit.to_address == "Wadakkanchery" %}selected{% endif %}>Wadakkanchery</option>
+                    <option value="Mala" {% if edit.to_address == "Mala" %}selected{% endif %}>Mala</option>
+                    <option value="Pavaratty" {% if edit.to_address == "Pavaratty" %}selected{% endif %}>Pavaratty</option>
+                    <option value="Kaipamangalam" {% if edit.to_address == "Kaipamangalam" %}selected{% endif %}>Kaipamangalam</option>
+                    <option value="Mannuthy" {% if edit.to_address == "Mannuthy" %}selected{% endif %}>Mannuthy</option>
+                </select>
+            </div>
+
+            <button type="submit" class="w-full mt-6 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="profile-container">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="profile-header">
+                <img class="profile-pic" src="{{ usr.image.url }}" alt="Profile Picture">
+                <div class="profile-info">
+                    <h2>{{ usr.username }}</h2>
+                </div>
+            </div>
+            <div class="profile-body">
+                <div class="profile-field">
+                    <label for="name"><i class="fas fa-user"></i> Name:</label>
+                    <input type="text" id="name" name="name" value="{{ usr.name }}" readonly>
+                </div>
+                <div class="profile-field">
+                    <label for="email"><i class="fas fa-envelope"></i> Email:</label>
+                    <input type="email" id="email" name="email" value="{{ usr.email }}" readonly>
+                </div>
+                <div class="profile-field">
+                    <label for="dob"><i class="fas fa-birthday-cake"></i> DOB:</label>
+                    <input type="text" id="dob" name="dob" value="{{ usr.dob|date:'Y-m-d' }}" readonly>
+                </div>
+                <div class="profile-field">
+                    <label for="phone"><i class="fas fa-phone"></i> Phone:</label>
+                    <input type="tel" id="tel" name="phonenumber" value="{{ usr.phonenumber }}" readonly>
+                </div>
+                <div class="profile-field">
+                    <label for="gender"><i class="fas fa-venus-mars"></i> Gender:</label>
+                    <input type="text" id="gender" name="gender" value="{{ usr.gender }}" readonly>
+                </div>
+                <div class="profile-field">
+                    <label for="from-address"><i class="fas fa-map-marker-alt"></i> From Address:</label>
+                    <input type="text" id="from-address" name="from_address" value="{{ usr.from_address }}" readonly>
+                </div>
+                <div class="profile-field">
+                    <label for="to-address"><i class="fas fa-map-marker-alt"></i> To Address:</label>
+                    <input type="text" id="to-address" name="to_address" value="{{ usr.to_address }}" readonly>
+                </div>
+                <a href="/edit/{{ usr.id }}/" class="edit-button">Edit</a>
+                <a href="/" class="edit-button">Back to Home</a>
+            </div>
+        </form>
+    </div>
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #e3f2fd; /* Light blue background */
+            color: #1a237e; /* Dark blue text */
+            align-items: center;
+            height: 120vh;
+        }
+        .profile-container {
+            background-color: #ffffff; /* White background */
+        }
+        .profile-header {
+            position: relative;
+            text-align: center;
+            background: linear-gradient(135deg, #3f51b5, #1e88e5); /* Blue gradient */
+            color: white;
+            padding: 20px;
+        }
+        .profile-pic {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            margin-top: 20px;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .profile-info {
+            position: relative;
+            z-index: 2;
+        }
+        .profile-body {
+            padding: 20px;
+        }
+        .profile-field {
+            margin: 15px 0;
+            text-align: left;
+        }
+        .profile-field label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+            color: #1a237e; /* Dark blue text */
+        }
+        .profile-field label i {
+            margin-right: 10px;
+        }
+        .profile-field input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #1e88e5; /* Blue border */
+            border-radius: 5px;
+            background-color: #e3f2fd; /* Light blue background */
+            color: #1a237e; /* Dark blue text */
+        }
+        .edit-button {
+            background: linear-gradient(135deg, #3f51b5, #1e88e5); /* Blue gradient */
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+            padding: 10px 15px;
+            margin-top: 20px;
+            text-align: center;
+            width: 100%;
+            text-decoration: none;
+            display: block;
+        }
+        .edit-button:hover {
+            background-color: #1565c0; /* Darker blue background on hover */
+        }
+    </style>
+</body>
+</html>

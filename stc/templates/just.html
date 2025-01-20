@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="menu-icon">
+                <i class="fas fa-th"></i>
+            </div>
+            <div class="notification-icon">
+                <i class="fas fa-bell"></i>
+                <div class="badge">2</div>
+            </div>
+            <div class="balance">
+                <p>Welcome Back</p>
+                <h1>Nick Julian</h1>
+                <p>Current Balance</p>
+                <div class="amount">
+                    <span class="currency">$</span> 1,245
+                </div>
+                <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod</p>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="action">
+                <i class="fas fa-arrow-up"></i>
+                <p>Pay</p>
+            </div>
+            <div class="action">
+                <i class="fas fa-arrow-down"></i>
+                <p>Receive</p>
+            </div>
+            <div class="action">
+                <i class="fas fa-file-invoice"></i>
+                <p>Bills</p>
+            </div>
+            <div class="action">
+                <i class="fas fa-exchange-alt"></i>
+                <p>Transaction</p>
+            </div>
+            <div class="action">
+                <i class="fas fa-university"></i>
+                <p>Loans</p>
+            </div>
+            <div class="action">
+                <i class="fas fa-credit-card"></i>
+                <p>Credit Card</p>
+            </div>
+            <div class="action">
+                <i class="fas fa-dollar-sign"></i>
+                <p>Mutual Fund</p>
+            </div>
+            <div class="action">
+                <i class="fas fa-chart-bar"></i>
+                <p>Fixed Deposits</p>
+            </div>
+        </div>
+        <div class="transactions">
+            <h2>Recent Transaction</h2>
+            <div class="transaction">
+                <div class="icon">
+                    <i class="fas fa-money-bill-wave"></i>
+                </div>
+                <div class="details">
+                    <p class="title">Cash Withdrawal</p>
+                    <p class="date">10.30 23 Aug</p>
+                </div>
+                <div class="amount">$ 304</div>
+            </div>
+            <div class="transaction">
+                <div class="icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="details">
+                    <p class="title">Payment</p>
+                    <p class="date">11.30 23 Aug</p>
+                </div>
+                <div class="amount">$ 500</div>
+            </div>
+            <div class="transaction">
+                <div class="icon">
+                    <i class="fas fa-shopping-bag"></i>
+                </div>
+                <div class="details">
+                    <p class="title">Grocery Store</p>
+                    <p class="date">12.30 23 Aug</p>
+                </div>
+                <div class="amount">$ 56</div>
+            </div>
+            <div class="transaction">
+                <div class="icon">
+                    <i class="fas fa-clipboard-list"></i>
+                </div>
+                <div class="details">
+                    <p class="title">Monthly Subscribe</p>
+                    <p class="date">14.30 23 Aug</p>
+                </div>
+                <div class="amount">$ 23</div>
+            </div>
+        </div>
+    </div>
+    <style>body {
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+        background-color: #E0E7FF;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .container {
+        width: 375px;
+        background-color: #FFFFFF;
+        border-radius: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+    .header {
+        background-color: #4A56E2;
+        color: white;
+        padding: 20px;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        position: relative;
+    }
+    .header .menu-icon,
+    .header .notification-icon {
+        position: absolute;
+        top: 20px;
+    }
+    .header .menu-icon {
+        left: 20px;
+    }
+    .header .notification-icon {
+        right: 20px;
+    }
+    .header .notification-icon .badge {
+        background-color: #FF3B30;
+        color: white;
+        border-radius: 50%;
+        padding: 2px 6px;
+        font-size: 12px;
+        position: absolute;
+        top: -5px;
+        right: -5px;
+    }
+    .header .balance {
+        margin-top: 20px;
+    }
+    .header .balance h1 {
+        margin: 0;
+        font-size: 36px;
+    }
+    .header .balance p {
+        margin: 5px 0;
+    }
+    .header .balance .amount {
+        font-size: 48px;
+        font-weight: bold;
+    }
+    .header .balance .currency {
+        font-size: 24px;
+    }
+    .header .balance .description {
+        margin-top: 10px;
+        font-size: 12px;
+        color: #B0B0B0;
+    }
+    .actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 20px;
+    }
+    .actions .action {
+        width: 70px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .actions .action i {
+        font-size: 24px;
+        color: #4A56E2;
+    }
+    .actions .action p {
+        margin: 5px 0 0;
+        font-size: 12px;
+        color: #4A56E2;
+    }
+    .transactions {
+        padding: 20px;
+    }
+    .transactions h2 {
+        margin: 0 0 20px;
+        font-size: 18px;
+        color: #4A56E2;
+    }
+    .transactions .transaction {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .transactions .transaction .icon {
+        background-color: #E0E7FF;
+        padding: 10px;
+        border-radius: 10px;
+    }
+    .transactions .transaction .icon i {
+        font-size: 24px;
+        color: #4A56E2;
+    }
+    .transactions .transaction .details {
+        flex-grow: 1;
+        margin-left: 10px;
+    }
+    .transactions .transaction .details p {
+        margin: 0;
+    }
+    .transactions .transaction .details .title {
+        font-size: 14px;
+        font-weight: bold;
+        color: #4A56E2;
+    }
+    .transactions .transaction .details .date {
+        font-size: 12px;
+        color: #B0B0B0;
+    }
+    .transactions .transaction .amount {
+        font-size: 14px;
+        font-weight: bold;
+        color: #4A56E2;
+    }
+    </style>
+</body>
+</html>

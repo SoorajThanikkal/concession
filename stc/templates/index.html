@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Premium Bus Concession App</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body class="bg-blue-50 flex justify-center items-center min-h-screen p-4">
+    <div class="w-full md:w-[500px] lg:w-[450px] bg-white rounded-3xl overflow-hidden shadow-lg min-h-[600px] max-h-[800px] flex flex-col">
+        <div class="relative bg-gradient-to-r from-blue-600 to-blue-500 text-white p-5 text-center">
+            <!-- Menu Icon -->
+            <div class="absolute top-5 left-5">
+                <i class="fas fa-user text-white"></i>
+            </div>
+            
+            <!-- Notification Icon -->
+            <div class="absolute top-5 right-24">
+                <div class="relative">
+                    <i class="fas fa-bell text-white"></i>
+                    <div class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1.5 py-0.5">2</div>
+                </div>
+            </div>
+
+            <!-- Profile Icon -->
+            {% comment %} <div class="absolute top-4 right-5">
+                {% if user.is_authenticated %}
+                    <a href="/profile/" class="text-white hover:text-yellow-300 transition-colors">
+                        <i class="fas fa-user-circle fa-3x"></i>
+                    </a>
+                {% else %}
+                    <a href="/login/" class="text-white hover:text-yellow-300 transition-colors">
+                        <i class="fas fa-sign-in-alt fa-3x"></i>
+                    </a>
+                {% endif %}
+            </div> {% endcomment %}
+
+            <!-- Welcome Section -->
+            <div class="mt-10">
+                <p class="text-sm">Welcome</p>
+                <h1 class="text-2xl font-bold">
+                        {{ student.name }}
+                </h1>
+                <div class="mt-4">
+                    <h1 class="text-xl flex items-center justify-center gap-2">
+                        <i class="fas fa-bus-alt"></i> Student Bus Concession
+                    </h1>
+                </div>
+                {% comment %} <p class="text-sm mt-2">Hi! {{ student.from_address }}</p> {% endcomment %}
+            </div>
+        </div>
+        <!-- Actions Grid -->
+        <div class="grid grid-cols-2 gap-4 p-5 flex-grow">
+            <div class="bg-white rounded-xl p-4 shadow-md text-center hover:scale-105 transition transform flex flex-col justify-center items-center">
+                <i class="fas fa-user-circle text-blue-600 text-2xl mb-2"></i>
+                <p><a href="{% url 'profile' %}" class="text-blue-600">View Profile</a></p>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-md text-center hover:scale-105 transition transform flex flex-col justify-center items-center">
+                <i class="fas fa-wallet text-blue-600 text-2xl mb-2"></i>
+                <p><a href="{% url 'showmywallet' %}" class="text-blue-600">Wallet</a></p>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-md text-center hover:scale-105 transition transform flex flex-col justify-center items-center">
+                <i class="fas fa-credit-card text-blue-600 text-2xl mb-2"></i>
+                <p>Payment</p>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-md text-center hover:scale-105 transition transform flex flex-col justify-center items-center">
+                <i class="fas fa-ticket-alt text-blue-600 text-2xl mb-2"></i>
+                <p><a href="{% url 'book_bus_pass' %}" class="text-blue-600">Bus Pass</a></p>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-md text-center hover:scale-105 transition transform flex flex-col justify-center items-center">
+                <i class="fas fa-user-circle  text-blue-600 text-2xl mb-2"></i>
+                <p><a href="{% url 'logout' %}" class="text-blue-600">Logout</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+        }
+        .navbar {
+            background-color: #002D72; /* Dashboard theme color */
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .nav-link:hover {
+            color: #f4f4f9 !important;
+        }
+        .card {
+            border-radius: 10px;
+        }
+        .dashboard-content {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/wallet/"><i class="fas fa-wallet"></i> Wallet</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/conductorprofile/"><i class="fas fa-user-circle"></i> Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-danger" href="/logout/"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <div class="container dashboard-content">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <!-- Card 1 -->
+            <div class="col">
+                <div class="card text-center shadow-sm h-100">
+                    <div class="card-body">
+                        <i class="fas fa-wallet fa-2x text-primary mb-3"></i>
+                        <h5 class="card-title">Wallet Balance</h5>
+                        <p class="card-text"><strong>₹5000.00</strong></p>
+                        <a href="/wallet" class="btn btn-primary">View Wallet</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="col">
+                <div class="card text-center shadow-sm h-100">
+                    <div class="card-body">
+                        <i class="fas fa-user fa-2x text-success mb-3"></i>
+                        <h5 class="card-title">Profile</h5>
+                        <p class="card-text">Manage your account settings</p>
+                        <a href="/conductorprofile/" class="btn btn-success">View Profile</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="col">
+                <div class="card text-center shadow-sm h-100">
+                    <div class="card-body">
+                        <i class="fas fa-bus fa-2x text-warning mb-3"></i>
+                        <h5 class="card-title">Scan Qr</h5>
+                        <p class="card-text">Check daily pass in a click!</p>
+                        <a href="/scan-qr/" class="btn btn-warning text-white">Check Now</a>
+                    </div>
+                </div>
+            </div> 
+
+            <!-- Card 4 (Example of Dynamic Card) -->
+            <div class="col">
+                <div class="card text-center shadow-sm h-100">
+                    <div class="card-body">
+                        <i class="fas fa-chart-line fa-2x text-info mb-3"></i>
+                        <h5 class="card-title">Travel Statistics</h5>
+                        <p class="card-text">Track your bus usage and spending patterns.</p>
+                        <a href="/statistics" class="btn btn-info">View Stats</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

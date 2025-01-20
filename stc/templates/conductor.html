@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conductor Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Conductor Panel</h2>
+        <ul>
+            <li><a href="#dashboard">Dashboard</a></li>
+            <li><a href="#total-students">Total Students</a></li>
+            <li><a href="#bus-name">Bus Name</a></li>
+            <li><a href="#payment-history">Payment History</a></li>
+            <li><a href="#complaints">Students' Complaints</a></li>
+            <li><a href="#student-details">Student Details</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <h1>Dashboard</h1>
+            <button id="payment-btn">Add Payment</button>
+        </header>
+
+        <section id="dashboard" class="section">
+            <div class="card">
+                <h3>Total Students</h3>
+                <p id="total-students">150</p>
+            </div>
+            <div class="card">
+                <h3>Bus Name</h3>
+                <p id="bus-name">Express Line 5</p>
+            </div>
+        </section>
+
+        <section id="payment-history" class="section">
+            <h2>Payment History</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Name</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Sample Data -->
+                    <tr>
+                        <td>2023001</td>
+                        <td>Alice Johnson</td>
+                        <td>₹50</td>
+                        <td>2024-04-10</td>
+                    </tr>
+                    <tr>
+                        <td>2023002</td>
+                        <td>Bob Smith</td>
+                        <td>₹40</td>
+                        <td>2024-04-11</td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+        </section>
+
+        <section id="complaints" class="section">
+            <h2>Students' Complaints</h2>
+            <ul>
+                <li>2023003 - Issue with bus timing.</li>
+                <li>2023004 - Bus was overcrowded.</li>
+                <!-- Add more complaints as needed -->
+            </ul>
+        </section>
+
+        <section id="student-details" class="section">
+            <h2>Student Details</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Name</th>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Age</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Sample Data -->
+                    <tr>
+                        <td>2023001</td>
+                        <td>Alice Johnson</td>
+                        <td>Campus A</td>
+                        <td>Campus B</td>
+                        <td>20</td>
+                    </tr>
+                    <tr>
+                        <td>2023002</td>
+                        <td>Bob Smith</td>
+                        <td>Campus C</td>
+                        <td>Campus D</td>
+                        <td>22</td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <!-- Payment Pop-up Modal -->
+    <div id="payment-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add Payment</h2>
+            <form id="payment-form">
+                <label for="student-id">Student ID:</label>
+                <input type="text" id="student-id" name="student-id" required>
+
+                <label for="amount">Amount:</label>
+                <input type="number" id="amount" name="amount" required>
+
+                <button type="submit">Submit Payment</button>
+            </form>
+        </div>
+    </div>
+    <style>/* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            height: 100vh;
+            background-color: #f0f2f5;
+        }
+        
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+        }
+        
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .sidebar ul {
+            list-style: none;
+        }
+        
+        .sidebar ul li {
+            margin: 20px 0;
+        }
+        
+        .sidebar ul li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            transition: background 0.3s, padding-left 0.3s;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        
+        .sidebar ul li a:hover {
+            background-color: #34495e;
+            padding-left: 15px;
+        }
+        
+        /* Main Content Styles */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        header h1 {
+            font-size: 28px;
+            color: #2c3e50;
+        }
+        
+        header button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        header button:hover {
+            background-color: #2980b9;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section h2 {
+            font-size: 24px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        
+        /* Cards */
+        .card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 45%;
+            display: inline-block;
+            margin-right: 5%;
+            vertical-align: top;
+        }
+        
+        .card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #34495e;
+        }
+        
+        .card p {
+            font-size: 18px;
+            color: #16a085;
+        }
+        
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        table thead {
+            background-color: #3498db;
+            color: #fff;
+        }
+        
+        table th, table td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+        
+        table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        /* Complaints List */
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        
+        ul li {
+            margin-bottom: 10px;
+            color: #34495e;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; 
+            z-index: 1000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.5); 
+        }
+        
+        .modal-content {
+            background-color: #fff;
+            margin: 10% auto; 
+            padding: 20px;
+            border-radius: 8px;
+            width: 400px; 
+            position: relative;
+        }
+        
+        .modal-content h2 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            color: #aaa;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: #000;
+        }
+        
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+        
+        form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #bdc3c7;
+            border-radius: 4px;
+        }
+        
+        form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #27ae60;
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        form button:hover {
+            background-color: #1e8449;
+        }
+        </style>
+
+    <script>document.getElementById('payment-btn').addEventListener('click', function() {
+        document.getElementById('payment-popup').style.display = 'flex';
+    });
+    
+    document.querySelector('.close').addEventListener('click', function() {
+        document.getElementById('payment-popup').style.display = 'none';
+    });
+    
+    document.querySelector('.close-btn').addEventListener('click', function() {
+        document.getElementById('payment-popup').style.display = 'none';
+    });
+    
+    window.onclick = function(event) {
+        if (event.target == document.getElementById('payment-popup')) {
+            document.getElementById('payment-popup').style.display = 'none';
+        }
+    };
+    </script>
+</body>
+</html>

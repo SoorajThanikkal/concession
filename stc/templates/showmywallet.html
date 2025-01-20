@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wallet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-blue-600 text-white py-4">
+        <div class="container mx-auto flex items-center justify-between">
+            <h1 class="text-2xl font-bold flex items-center">
+                <i class="fas fa-wallet mr-2"></i> My Wallet
+            </h1>
+            <button class="bg-blue-800 px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                <i class="fas fa-sign-out-alt"></i> 
+                <a href="/">Back to home</a>
+            </button>
+        </div>
+    </header>
+
+    <!-- Wallet Section -->
+    <main class="container mx-auto p-6 flex-grow">
+        <div class="bg-white shadow-lg rounded-lg p-6">
+            <h2 class="text-xl font-semibold mb-4 flex items-center">
+                <i class="fas fa-user-circle mr-2 text-blue-600"></i> Wallet Details
+            </h2>
+            <!-- Wallet Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {% for wallet in wlt %}
+                <div class="bg-gray-50 border border-gray-200 p-4 rounded-lg shadow-sm hover:shadow-lg transition">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg font-medium text-gray-700">
+                            <i class="fas fa-coins text-yellow-500"></i> Amount
+                        </h3>
+                        <span class="text-sm text-gray-500">{{ wallet.created_at }}</span>
+                    </div>
+                    <p class="text-2xl font-bold text-gray-800 mt-2">
+                        ₹{{ wallet.amount }}
+                    </p>
+                </div>
+                {% endfor %}
+            </div>
+            {% if not wlt %}
+            <p class="text-gray-500 text-center mt-6">
+                <i class="fas fa-info-circle"></i> No wallet entries found.
+            </p>
+            {% endif %}
+
+            <!-- Add Money Section -->
+            <div class="mt-6 text-center">
+                <label for="amount" class="block mb-2 text-gray-700 font-semibold">Enter Amount to Add</label>
+                <input id="amount" type="number" min="1" placeholder="Enter amount"
+                    class="w-full sm:w-1/2 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <button id="pay-button"
+                    class="mt-4 bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition shadow-lg">
+                    <i class="fas fa-plus"></i> Add Money
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-400 text-center py-4">
+        <p>&copy; 2024 My Wallet. All Rights Reserved.</p>
+    </footer>
+</body>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    document.getElementById('pay-button').addEventListener('click', function (e) {
+        e.preventDefault();
+        const amount = document.getElementById('amount').value;
+
+        if (!amount || amount <= 0) {
+            alert('Please enter a valid amount');
+            return;
+        }
+
+        // Initiate payment
+        fetch(`/initiate-payment/${amount}/`)
+            .then(response => response.json())
+            .then(data => {
+                const orderId = data.order_id;
+                const options = {
+                    "key": "{{ settings.RAZOR_KEY_ID }}",
+                    "amount": data.amount,
+                    "currency": "INR",
+                    "name": "Consession",
+                    "description": "Add Money to Wallet",
+                    "order_id": orderId,
+                    "handler": function (response) {
+                        // Redirect to confirm payment URL with order_id and payment_id
+                        window.location.href = `/confirm-payment/${orderId}/${response.razorpay_payment_id}/`;
+                    },
+                    "prefill": {
+                        "name": data.buyer.name,
+                        "email": data.buyer.email,
+                        "contact": data.buyer.phone
+                    },
+                    "theme": {
+                        "color": "#3399cc"
+                    }
+                };
+                const rzp = new Razorpay(options);
+                rzp.open();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to initiate payment. Please try again.');
+            });
+    });
+</script>
+
+</html>

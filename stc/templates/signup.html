@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e3f2fd; /* Light blue background */
+            margin: 0;
+            padding: 0;
+            color: #1a237e; /* Dark blue text */
+        }
+        .container {
+            width: 100%;
+            max-width: 400px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h2 {
+            color: #1a237e; /* Dark blue heading */
+            margin-bottom: 10px;
+        }
+        p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #1a237e; /* Dark blue label */
+        }
+        input[type="text"], input[type="email"], input[type="password"], input[type="tel"], input[type="date"], input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #1e88e5; /* Blue border */
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: linear-gradient(to right, #3f51b5, #1e88e5); /* Blue gradient */
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button[type="submit"]:hover {
+            background-color: #1565c0; /* Darker blue on hover */
+        }
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+        input[type="checkbox"] {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Sign Up</h2>
+    <p>Please fill in this form to create an account.</p>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="photo">ID CARD PHOTO</label>
+            <input type="file" id="photo" name="photo" required>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="form-group">
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" required>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Mobile number</label>
+            <input type="tel" id="tel" name="phonenumber" required>
+        </div>
+
+        <div class="form-group">
+            <label for="gender">Gender</label>
+            <input type="radio" id="gender" name="gender" value="MALE" required> Male
+            <input type="radio" id="gender" name="gender" value="FEMALE" required> Female
+            <input type="radio" id="gender" name="gender" value="OTHERS" required> Others
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+            <input type="checkbox" id="show-password" onclick="togglePasswordVisibility('password')"> Show Password
+        </div>
+
+        <div class="form-group">
+            <button type="submit">Sign Up</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    function togglePasswordVisibility(fieldId) {
+        var field = document.getElementById(fieldId);
+        if (field.type === "password") {
+            field.type = "text";
+        } else {
+            field.type = "password";
+        }
+    }
+</script>
+
+</body>
+</html>
